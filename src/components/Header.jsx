@@ -23,7 +23,30 @@ export default function Header() {
           <img src="/menu.svg" alt="" className="size-8" />
         </button>
         <el-dialog>
-          <dialog id="drawer"></dialog>
+          <dialog
+            id="drawer"
+            className="fixed inset-0 size-auto max-h-none max-w-none overflow-hidden bg-transparent not-open:hidden backdrop:bg-transparent"
+          >
+            <el-dialog-backgrop className="absolute inset-0 bg-gray-900/50 transition-opacity duration-500 ease-in-out data-closed:opacity-0 " />
+
+            <div
+              tabIndex="0"
+              className="absolute inset-0 pl-10 focus:outline-none sm:pl-16"
+            >
+              <el-dialog-panel className="group/dialog-panel relative ml-auto block size-full max-w-md transform transition duration-500 ease-in-out data-closed:translate-x-full sm:duration-700">
+                <div className="absolute top-0 left-0 -ml-8 flex pt-4 pr-2 duration-500 ease-in-out group-data-closed/dialog-panel:opacity-0 sm:-ml-10 sm:pr-4">
+                  <button
+                    type="button"
+                    command="close"
+                    commandfor="drawer"
+                    className="relative rounded-md text-gray-400 hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
+                  >
+                    <span></span>
+                  </button>
+                </div>
+              </el-dialog-panel>
+            </div>
+          </dialog>
         </el-dialog>
       </article>
     </nav>
