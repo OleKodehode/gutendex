@@ -4,14 +4,16 @@ import "@tailwindplus/elements";
 import Categories from "./components/Categories";
 import { categoriesArray } from "./utils/categoriesArray";
 
+import Home from "./Pages/Home";
+
 function App() {
   return (
     <>
       <Header />
       <Categories items={categoriesArray} />
-      <h1 className="p-5 rounded-2xl bg-amber-300 text-zinc-900 w-1/2">
-        Test to see if everything works
-      </h1>
+      <Routes>
+        <Route path="/" element={<Home />} />
+      </Routes>
     </>
   );
 }

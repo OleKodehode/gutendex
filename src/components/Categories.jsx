@@ -6,7 +6,7 @@ import "swiper/css/navigation";
 
 export default function Categories({ items }) {
   return (
-    <section className="h-15 bg-sky-400 dark:bg-sky-600 border-t-2 border-zinc-700 w-screen pt-3 flex justify-between">
+    <section className="h-15 bg-sky-400 dark:bg-sky-600 border-t-2 border-zinc-700 w-screen pt-3 flex justify-between fixed top-20">
       <Swiper
         modules={[Scrollbar, Navigation]}
         scrollbar={{ draggable: true }}

@@ -15,7 +15,7 @@ export default function Header() {
         />
       </article>
       <article>
-        <button className="hover:-translate-y-0.5 hover:text-red-600">
+        <button className="hover:-translate-y-0.5 hover:text-red-600 px-2">
           <p className="md:hidden text-3xl">♡</p>
           <p className="hidden md:block text-xl text-nowrap">♡ Favorites</p>
         </button>

@@ -6,11 +6,10 @@
 }
 
 #root {
-  /* the main section of the react app. margin-top 20 cause header is set to h-20 */
-  @apply flex flex-col mt-20 gap-5 md:gap-10 items-center;
+  /* the main section of the react app. margin-top 40 cause header is set to h-20 and categories is set to h-15. Gives some extra padding */
+  @apply flex flex-col mt-45 gap-5 items-center mb-10;
 }
 
-.swiper-button-prev,
-.swiper-button-next {
-  color: #111827; /* Tailwind zinc-900 */
+.card {
+  @apply flex flex-col gap-2 bg-slate-600 py-5 px-15 rounded-xl justify-center items-center shadow-lg shadow-zinc-800 dark:shadow-none md:grid md:grid-cols-4;
 }
