@@ -22,10 +22,10 @@
   @apply hover:text-red-500 hover:border-red-500 hover:-translate-y-0.5;
 }
 
-main {
-  @apply flex flex-col gap-4 md:grid md:grid-cols-3 mx-5;
+.books-container {
+  @apply flex flex-col gap-4 md:grid md:grid-cols-3 mx-5 mt-2;
 }
 
-.fixed-btn {
-  @apply absolute top-5 left-5 border-2 border-zinc-200 rounded-3xl px-2 hover:text-red-500 hover:border-red-500;
+.nav-btn {
+  @apply rounded-lg bg-zinc-700 p-2 hover:bg-zinc-800 hover:-translate-y-0.5 w-50;
 }
