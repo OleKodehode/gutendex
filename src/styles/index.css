@@ -10,6 +10,22 @@
   @apply flex flex-col mt-45 gap-5 items-center mb-10;
 }
 
-.card {
-  @apply flex flex-col gap-2 bg-slate-600 py-5 px-15 rounded-xl justify-center items-center shadow-lg shadow-zinc-800 dark:shadow-none md:grid md:grid-cols-4;
+.book-card {
+  @apply flex flex-col gap-2 bg-slate-600 py-5 px-15 rounded-xl justify-between items-center shadow-lg shadow-zinc-800 dark:shadow-none;
+}
+
+.book-card > img {
+  @apply rounded-lg h-60 w-auto shadow-md shadow-zinc-800;
+}
+
+.book-card > div {
+  @apply hover:text-red-500 hover:border-red-500 hover:-translate-y-0.5;
+}
+
+main {
+  @apply flex flex-col gap-4 md:grid md:grid-cols-3 mx-5;
+}
+
+.fixed-btn {
+  @apply absolute top-5 left-5 border-2 border-zinc-200 rounded-3xl px-2 hover:text-red-500 hover:border-red-500;
 }

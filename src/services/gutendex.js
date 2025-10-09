@@ -46,8 +46,3 @@ export const getSearchBooks = (searchQuery = null) => {
 
   return get(url);
 };
-
-(async () => {
-  const books = await getSearchBooks("Alice Wonderland");
-  console.log(books);
-})();

@@ -1,10 +1,16 @@
-export default function Cards() {
+export default function Cards({ book }) {
+  const { title, authors, formats } = book;
+
   return (
-    <div className="card">
-      <img src="" alt="" width={120} height={120} />
-      <h3 className="text-lg">Book Title Here</h3>
-      <p className="italic">Author</p>
-      <p>Category - Language</p>
-    </div>
+    <>
+      <div className="book-card">
+        <img src={formats["image/jpeg"]} alt="" />
+        <h3 className="text-lg">{title}</h3>
+        <p className="italic">by {authors[0]?.name}</p>
+        <div className="border-2 border-zinc-200 w-full text-center rounded-2xl mt-2 py-2">
+          <button className="text-3xl">♡</button>
+        </div>
+      </div>
+    </>
   );
 }
