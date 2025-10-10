@@ -36,7 +36,6 @@ export default function Home() {
     const query = searchParams.get("search") || "";
     setCurrentPage(1);
     setLoading(true);
-    setSelectedCategory("All");
 
     if (query) {
       getSearchBooks(query)
