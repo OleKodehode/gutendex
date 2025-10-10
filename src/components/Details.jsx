@@ -1,6 +1,11 @@
 import { convertLanguageCode } from "../utils/languageMap";
 
-export default function Details({ book, isOpen, closeDetails }) {
+export default function Details({
+  book,
+  isOpen,
+  closeDetails,
+  onToggleFavorite,
+}) {
   if (!book || !isOpen) return null;
 
   const { title, authors, formats, download_count, languages, bookshelves } =
@@ -77,7 +82,7 @@ export default function Details({ book, isOpen, closeDetails }) {
             {}
           </p>
         </div>
-        <div className="favorite">
+        <div className="favorite" onClick={onToggleFavorite}>
           <button className="text-3xl">♡</button>
         </div>
       </div>

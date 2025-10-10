@@ -4,7 +4,11 @@ import "swiper/css";
 import "swiper/css/scrollbar";
 import "swiper/css/navigation";
 
-export default function Categories({ items }) {
+export default function Categories({
+  items,
+  selectedCategory,
+  onCategoryChange,
+}) {
   return (
     <section className="h-15 bg-sky-400 dark:bg-sky-600 border-t-2 border-zinc-700 w-screen pt-3 flex justify-between fixed top-20 z-10">
       <Swiper
@@ -24,8 +28,13 @@ export default function Categories({ items }) {
             <SwiperSlide
               key={index}
               className="flex justify-center items-center"
+              onClick={() => onCategoryChange(item)}
             >
-              <p className="text-lg hover:-translate-y-0.5 hover:text-shadow-xs hover:text-zinc-300 cursor-pointer w-1/2 text-center">
+              <p
+                className={`text-lg hover:-translate-y-0.5 hover:text-shadow-xs hover:text-zinc-300 cursor-pointer w-1/2 text-center ${
+                  selectedCategory === item ? "underline" : ""
+                }`}
+              >
                 {item}
               </p>
             </SwiperSlide>

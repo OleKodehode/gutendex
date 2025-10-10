@@ -1,9 +1,14 @@
+import { Link } from "react-router-dom";
+
 export default function Header() {
   return (
-    <nav className="flex fixed top-0 left-0 w-full justify-between items-center h-20 px-5 bg-sky-400 dark:bg-sky-600 gap-2 sm:gap-4 md:gap-8 z-10">
-      <h1 className="text-xl sm:text-2xl text-nowrap cursor-default">
-        Book Finder
-      </h1>
+    <nav className="flex fixed top-0 left-0 w-full justify-between items-center h-20 px-5 bg-sky-400 dark:bg-sky-600 gap-3 sm:gap-4 md:gap-8 z-10">
+      <Link
+        to="/"
+        className="text-xl md:text-3xl text-nowrap hover:no-underline"
+      >
+        <h1 className="text-zinc-900 dark:text-zinc-200">Book Finder</h1>
+      </Link>
       <article
         id="search-bar"
         className="flex justify-between items-center bg-zinc-300 rounded-2xl px-2 sm:gap-2 md:gap-5 lg:gap-10 py-2.5 border-1 border-zinc-700 w-full"
@@ -17,10 +22,14 @@ export default function Header() {
         />
       </article>
       <article>
-        <button className="hover:-translate-y-0.5 hover:text-red-500 px-2">
-          <p className="md:hidden text-3xl">♡</p>
-          <p className="hidden md:block text-xl text-nowrap">♡ Favorites</p>
-        </button>
+        <Link to="/favorites" className="px-2 text-2xl">
+          <p className="hidden md:block dark:text-zinc-200 text-zinc-900 hover:-translate-y-0.5 hover:text-red-500 text-nowrap hover:no-underline">
+            ♡ Favorites
+          </p>
+          <p className="md:hidden dark:text-zinc-200 text-zinc-900 hover:-translate-y-0.5 hover:text-red-500">
+            ♡
+          </p>
+        </Link>
       </article>
     </nav>
   );
