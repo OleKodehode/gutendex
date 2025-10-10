@@ -3,11 +3,16 @@ import { Link, useLoaderData } from "react-router-dom";
 import Cards from "../components/Cards";
 import sample from "../../sample.json";
 import { useFavorites } from "../hooks/useFavorites.js";
+import Details from "../components/Details.jsx";
+import BookList from "../components/BookList";
+import { useDetails } from "../hooks/useDetails.js";
 
 export default function Favorites() {
   const loadedFavorites = useLoaderData();
   const [books, setBooks] = useState(sample.results);
   const { favorites, toggleFavorite } = useFavorites();
+  const { selectedBook, isDetailsOpen, closeDetails, openDetails } =
+    useDetails(books);
 
   // Filter books to show favorites - use /books?ids=<favorites> afterwards.
   const favoriteBooks = books.filter((book) => favorites.includes(book.id));
@@ -28,16 +33,23 @@ export default function Favorites() {
     <>
       <main>
         <h2>Favorites</h2>
-        <section className="books-container">
-          {favoriteBooks.map((book) => (
-            <Cards
-              key={book.id}
-              book={book}
-              isFavorite={true}
-              onToggleFavorite={() => toggleFavorite(book.id)}
-            />
-          ))}
-        </section>
+        <BookList
+          books={favoriteBooks}
+          openDetails={openDetails}
+          favorites={favorites}
+          toggleFavorite={toggleFavorite}
+        />
+        <Details
+          book={selectedBook}
+          isOpen={isDetailsOpen}
+          closeDetails={closeDetails}
+          isFavorite={
+            selectedBook ? favorites.includes(selectedBook.id) : false
+          }
+          onToggleFavorite={() =>
+            selectedBook && toggleFavorite(selectedBook.id)
+          }
+        />
       </main>
     </>
   );

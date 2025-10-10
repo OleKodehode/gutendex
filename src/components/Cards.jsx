@@ -13,13 +13,13 @@ export default function Cards({
         <h3 className="text-lg">{title}</h3>
         <p className="italic">by {authors[0]?.name}</p>
         <div
-          className="favorite"
+          className={`favorite ${isFavorite ? "favorited" : ""}`}
           onClick={(e) => {
             e.stopPropagation();
             onToggleFavorite();
           }}
         >
-          <button className={`text-2xl`}>{isFavorite ? "❤️" : "♡"}</button>
+          <button className="text-2xl">{isFavorite ? "❤️" : "♡"}</button>
         </div>
       </div>
     </>

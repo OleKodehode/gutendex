@@ -5,11 +5,19 @@ export default function Details({
   isOpen,
   closeDetails,
   onToggleFavorite,
+  isFavorite,
 }) {
   if (!book || !isOpen) return null;
 
-  const { title, authors, formats, download_count, languages, bookshelves } =
-    book;
+  const {
+    title,
+    authors,
+    formats,
+    download_count,
+    languages,
+    bookshelves,
+    id,
+  } = book;
 
   // Format the languages from language code to written languages (i.e "en" => English).
   // if there is multiple languages then map it out
@@ -46,7 +54,8 @@ export default function Details({
   */
   return (
     <dialog open={isOpen} onClick={closeOnBackdropClick}>
-      <div className="details-container">
+      <div className="details-container relative">
+        <p className="absolute top-2 left-4 italic text-sm">Book ID: {id}</p>
         <button
           onClick={closeDetails}
           className="self-end mt-4 bg-slate-500 text-zinc-200 px-4 py-1.5 rounded-xl hover:bg-slate-700 hover:-translate-y-0.5 hover:cursor-pointer"
@@ -82,8 +91,11 @@ export default function Details({
             {}
           </p>
         </div>
-        <div className="favorite" onClick={onToggleFavorite}>
-          <button className="text-3xl">♡</button>
+        <div
+          className={`favorite ${isFavorite ? "favorited" : ""}`}
+          onClick={onToggleFavorite}
+        >
+          <button className="text-3xl">{isFavorite ? "❤️" : "♡"}</button>
         </div>
       </div>
     </dialog>
