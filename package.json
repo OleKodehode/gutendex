@@ -2,7 +2,7 @@
   "name": "gutendex",
   "private": true,
   "version": "0.0.0",
-  "homepage": "https://github.com/OleKodehode/gutendex",
+  "homepage": "https://github.com/OleKodehode/gutendex/",
   "type": "module",
   "scripts": {
     "dev": "vite",
