@@ -12,11 +12,12 @@ export const useFavorites = () => {
   }, [favorites]);
 
   const toggleFavorite = (bookID) => {
+    const stringID = String(bookID);
     setFavorites(
       (prev) =>
-        prev.includes(bookID)
-          ? prev.filter((id) => id !== bookID) // filter out the book if it's in favorites
-          : [...prev, bookID] // otherwise, add it
+        prev.includes(stringID)
+          ? prev.filter((id) => id !== stringID) // filter out the book if it's in favorites
+          : [...prev, stringID] // otherwise, add it
     );
   };
 

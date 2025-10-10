@@ -65,7 +65,7 @@ export default function Favorites() {
           isOpen={isDetailsOpen}
           closeDetails={closeDetails}
           isFavorite={
-            selectedBook ? favorites.includes(selectedBook.id) : false
+            selectedBook ? favorites.includes(String(selectedBook.id)) : false
           }
           onToggleFavorite={() =>
             selectedBook && toggleFavorite(selectedBook.id)

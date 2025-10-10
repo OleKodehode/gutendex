@@ -13,7 +13,7 @@ export default function BookList({
           key={book.id}
           book={book}
           openDetails={openDetails}
-          isFavorite={favorites.includes(book.id)}
+          isFavorite={favorites.includes(String(book.id))}
           onToggleFavorite={() => toggleFavorite(book.id)}
         />
       ))}
