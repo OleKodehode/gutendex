@@ -37,7 +37,7 @@ export default function Header() {
           />
           <button
             type="submit"
-            className="text-zinc-900 rounded px-2 py-1 hover:bg-zinc-400"
+            className="text-zinc-900 rounded px-2 py-1 hover:bg-zinc-400 hidden md:block"
           >
             Search
           </button>
