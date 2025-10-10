@@ -25,10 +25,7 @@ export const getBooks = (query = null, params = null) => {
 };
 
 export const getSpecificBooks = (params = null) => {
-  if (!params) {
-    console.log("Please provide some books.");
-    return;
-  }
+  if (!params) return;
 
   const url = `${BASEURL}?ids=${params.join(",")}`;
 
@@ -44,5 +41,13 @@ export const getSearchBooks = (searchQuery = null) => {
 
   console.log(url);
 
+  return get(url);
+};
+
+export const getNextBooks = (url) => {
+  return get(url);
+};
+
+export const getPrevBooks = (url) => {
   return get(url);
 };

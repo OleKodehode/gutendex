@@ -1,22 +1,44 @@
 import { useEffect, useState } from "react";
-import { Link, useLoaderData } from "react-router-dom";
-import Cards from "../components/Cards";
+import { Link } from "react-router-dom";
 import sample from "../../sample.json";
 import { useFavorites } from "../hooks/useFavorites.js";
 import Details from "../components/Details.jsx";
 import BookList from "../components/BookList";
 import { useDetails } from "../hooks/useDetails.js";
+import { getSpecificBooks } from "../services/gutendex";
 
 export default function Favorites() {
-  const loadedFavorites = useLoaderData();
   const [books, setBooks] = useState(sample.results);
+  const [loading, setLoading] = useState(false);
   const { favorites, toggleFavorite } = useFavorites();
+  const favoriteBooks = books.filter((book) => favorites.includes(book.id));
   const { selectedBook, isDetailsOpen, closeDetails, openDetails } =
-    useDetails(books);
+    useDetails(favoriteBooks);
+
+  useEffect(() => {
+    if (favorites.length === 0) {
+      setBooks([]);
+      return;
+    }
+    setLoading(true);
+    getSpecificBooks(favorites)
+      .then((data) => setBooks(data.results))
+      .catch((err) => console.error("Failed to fetch favorites:", err))
+      .finally(() => setLoading(false));
+  }, [favorites]);
+
+  if (loading) {
+    return (
+      <main>
+        <h2 className="text-center text-3xl -mt-20 mb-5">Favorite Books</h2>
+        <p className="text-center animate-pulse text-lg">
+          Loading favorite books...
+        </p>
+      </main>
+    );
+  }
 
   // Filter books to show favorites - use /books?ids=<favorites> afterwards.
-  const favoriteBooks = books.filter((book) => favorites.includes(book.id));
-
   if (favoriteBooks.length === 0) {
     return (
       <main>
@@ -31,8 +53,8 @@ export default function Favorites() {
 
   return (
     <>
-      <main>
-        <h2>Favorites</h2>
+      <h2 className="text-center text-3xl -mt-20 mb-5">Favorite Books</h2>
+      <main className="w-full">
         <BookList
           books={favoriteBooks}
           openDetails={openDetails}

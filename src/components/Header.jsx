@@ -1,6 +1,17 @@
-import { Link } from "react-router-dom";
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function Header() {
+  const [searchInput, setSearchInput] = useState("");
+  const navigate = useNavigate();
+
+  // const handleSearch = (e) => {
+  //   e.preventDefault();
+  //   if (!searchInput.trim()) {
+  //     navigate("/"); // Back to home if not already there - Clears search
+  //   } else {
+  //   }
+  // };
   return (
     <nav className="flex fixed top-0 left-0 w-full justify-between items-center h-20 px-5 bg-sky-400 dark:bg-sky-600 gap-3 sm:gap-4 md:gap-8 z-10">
       <Link

@@ -16,7 +16,6 @@ const routes = [
       {
         path: "/favorites",
         element: <Favorites />,
-        loader: () => JSON.parse(localStorage.getItem("favorites") || "[]"),
         errorElement: <ErrorElement />,
       },
     ],
