@@ -19,7 +19,7 @@
 }
 
 .favorite {
-  @apply border-2 border-zinc-200 w-full text-center rounded-2xl mt-2 py-2 hover:text-red-500 hover:border-red-500 hover:-translate-y-0.5;
+  @apply border-2 border-zinc-900 dark:border-zinc-200 w-full text-center rounded-2xl mt-2 py-2 hover:text-red-500 hover:border-red-500 hover:-translate-y-0.5;
 }
 
 dialog > div > .favorite {
@@ -31,7 +31,7 @@ dialog > div > .favorite {
 }
 
 .nav-btn {
-  @apply rounded-lg bg-zinc-700 p-2 hover:bg-zinc-800 hover:-translate-y-0.5 w-50;
+  @apply rounded-lg bg-slate-600 hover:bg-slate-700 hover:text-zinc-200 dark:bg-zinc-700 p-2 dark:hover:bg-zinc-800 hover:-translate-y-0.5 w-50;
 }
 
 dialog {
@@ -39,7 +39,7 @@ dialog {
 }
 
 .details-container {
-  @apply dark:bg-zinc-800 p-6 pt-2 rounded-lg w-11/12 md:w-6/12 min-h-10/12 md:min-h-8/12 flex flex-col justify-between items-center relative dark:text-zinc-200;
+  @apply bg-slate-600 dark:bg-zinc-800 p-6 pt-2 rounded-lg w-11/12 md:w-6/12 min-h-10/12 md:min-h-8/12 flex flex-col justify-between items-center relative dark:text-zinc-200;
 }
 
 dialog > div > img {
@@ -47,7 +47,7 @@ dialog > div > img {
 }
 
 a {
-  @apply text-sky-500 dark:text-sky-400 hover:underline hover:cursor-pointer hover:text-sky-600 hover:dark:text-sky-500;
+  @apply text-slate-200 dark:text-sky-400 hover:underline hover:cursor-pointer hover:text-slate-300 hover:dark:text-sky-500;
 }
 
 .clamp-title {

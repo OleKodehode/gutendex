@@ -1,6 +1,6 @@
 export default function Header() {
   return (
-    <nav className="flex fixed top-0 left-0 w-full justify-between items-center h-20 px-5 bg-sky-600 gap-2 sm:gap-4 md:gap-8 z-10">
+    <nav className="flex fixed top-0 left-0 w-full justify-between items-center h-20 px-5 bg-sky-400 dark:bg-sky-600 gap-2 sm:gap-4 md:gap-8 z-10">
       <h1 className="text-xl sm:text-2xl text-nowrap cursor-default">
         Book Finder
       </h1>
@@ -17,7 +17,7 @@ export default function Header() {
         />
       </article>
       <article>
-        <button className="hover:-translate-y-0.5 hover:text-red-600 px-2">
+        <button className="hover:-translate-y-0.5 hover:text-red-500 px-2">
           <p className="md:hidden text-3xl">♡</p>
           <p className="hidden md:block text-xl text-nowrap">♡ Favorites</p>
         </button>
