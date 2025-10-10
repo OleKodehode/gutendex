@@ -5,13 +5,15 @@ export default function Header() {
   const [searchInput, setSearchInput] = useState("");
   const navigate = useNavigate();
 
-  // const handleSearch = (e) => {
-  //   e.preventDefault();
-  //   if (!searchInput.trim()) {
-  //     navigate("/"); // Back to home if not already there - Clears search
-  //   } else {
-  //   }
-  // };
+  const handleSearch = (e) => {
+    e.preventDefault();
+    if (!searchInput.trim()) {
+      navigate("/"); // Back to home if not already there - Clears search
+    } else {
+      navigate(`/?search=${encodeURIComponent(searchInput)}`);
+    }
+    setSearchInput("");
+  };
   return (
     <nav className="flex fixed top-0 left-0 w-full justify-between items-center h-20 px-5 bg-sky-400 dark:bg-sky-600 gap-3 sm:gap-4 md:gap-8 z-10">
       <Link
@@ -25,12 +27,21 @@ export default function Header() {
         className="flex justify-between items-center bg-zinc-300 rounded-2xl px-2 sm:gap-2 md:gap-5 lg:gap-10 py-2.5 border-1 border-zinc-700 w-full"
       >
         <img src="/search.svg" alt="" className="hidden sm:block" />
-        <input
-          type="search"
-          name=""
-          id=""
-          className="text-zinc-900 focus:outline-0 caret-indigo-700  w-full"
-        />
+        <form onSubmit={handleSearch} className="flex gap-2 w-full">
+          <input
+            type="search"
+            value={searchInput}
+            onChange={(e) => setSearchInput(e.target.value)}
+            placeholder="Search for books..."
+            className="text-zinc-900 focus:outline-0 caret-indigo-700  w-full"
+          />
+          <button
+            type="submit"
+            className="text-zinc-900 rounded px-2 py-1 hover:bg-zinc-400"
+          >
+            Search
+          </button>
+        </form>
       </article>
       <article>
         <Link to="/favorites" className="px-2 text-2xl">

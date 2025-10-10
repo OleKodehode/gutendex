@@ -14,40 +14,30 @@ const get = async (url) => {
   }
 };
 
-export const getBooks = (query = null, params = null) => {
-  const url = `${BASEURL}${query ? `?${query}` : ""}${
-    query && params ? `=${params}` : ""
-  }`;
-
-  console.log(url);
+export const getBooks = (topic = null) => {
+  const url = topic ? `${BASEURL}?topic=${topic}` : BASEURL;
 
   return get(url);
 };
 
-export const getSpecificBooks = (params = null) => {
-  if (!params) return;
+export const getSpecificBooks = (ids = []) => {
+  if (!ids.length) return { results: [], count: 0, next: null, previous: null };
 
-  const url = `${BASEURL}?ids=${params.join(",")}`;
-
-  console.log(url);
+  const url = `${BASEURL}?ids=${ids.join(",")}`;
 
   return get(url);
 };
 
-export const getSearchBooks = (searchQuery = null) => {
-  if (!searchQuery) return;
-  searchQuery = searchQuery.replace(" ", "%20");
-  const url = `${BASEURL}?search=${searchQuery}`;
+export const getSearchBooks = (query = "") => {
+  if (!query.trim())
+    return { results: [], count: 0, next: null, previous: null };
+  const encodedQuery = encodeURIComponent(query);
 
-  console.log(url);
+  const url = `${BASEURL}?search=${encodedQuery}`;
 
   return get(url);
 };
 
-export const getNextBooks = (url) => {
-  return get(url);
-};
+export const getNextBooks = (url) => get(url);
 
-export const getPrevBooks = (url) => {
-  return get(url);
-};
+export const getPrevBooks = (url) => get(url);

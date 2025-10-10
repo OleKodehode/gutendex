@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import sample from "../../sample.json";
 import { useFavorites } from "../hooks/useFavorites.js";
 import Details from "../components/Details.jsx";
 import BookList from "../components/BookList";
@@ -8,13 +7,13 @@ import { useDetails } from "../hooks/useDetails.js";
 import { getSpecificBooks } from "../services/gutendex";
 
 export default function Favorites() {
-  const [books, setBooks] = useState(sample.results);
+  const [books, setBooks] = useState([]);
   const [loading, setLoading] = useState(false);
   const { favorites, toggleFavorite } = useFavorites();
-  const favoriteBooks = books.filter((book) => favorites.includes(book.id));
   const { selectedBook, isDetailsOpen, closeDetails, openDetails } =
-    useDetails(favoriteBooks);
+    useDetails(books);
 
+  // initial fetch of favorites
   useEffect(() => {
     if (favorites.length === 0) {
       setBooks([]);
@@ -25,7 +24,7 @@ export default function Favorites() {
       .then((data) => setBooks(data.results))
       .catch((err) => console.error("Failed to fetch favorites:", err))
       .finally(() => setLoading(false));
-  }, [favorites]);
+  }, []); // fetch only once - Allow the user to re-add a favorite to their list if they miss-clicked or change their mind before leaving favorites
 
   if (loading) {
     return (
@@ -39,7 +38,7 @@ export default function Favorites() {
   }
 
   // Filter books to show favorites - use /books?ids=<favorites> afterwards.
-  if (favoriteBooks.length === 0) {
+  if (books.length === 0) {
     return (
       <main>
         <h2>Favorites</h2>
@@ -56,7 +55,7 @@ export default function Favorites() {
       <h2 className="text-center text-3xl -mt-20 mb-5">Favorite Books</h2>
       <main className="w-full">
         <BookList
-          books={favoriteBooks}
+          books={books}
           openDetails={openDetails}
           favorites={favorites}
           toggleFavorite={toggleFavorite}

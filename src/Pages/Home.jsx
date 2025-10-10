@@ -6,7 +6,7 @@ import {
   getNextBooks,
   getPrevBooks,
 } from "../services/gutendex";
-import sample from "../../sample.json";
+
 import Details from "../components/Details";
 import Categories from "../components/Categories";
 import { categoriesArray } from "../utils/categoriesArray";
@@ -16,12 +16,10 @@ import BookList from "../components/BookList";
 import { useSearchParams } from "react-router-dom";
 
 export default function Home() {
-  const { results } = sample; // Used for testing.
-  const [books, setBooks] = useState(results);
+  const [books, setBooks] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("All"); //default should be All
   const [totalBooks, setTotalBooks] = useState(0); // set to count from the API.
   const [currentPage, setCurrentPage] = useState(1);
-  const [searchQuery, setSearchQuery] = useState("");
   const [searchParams, setSearchParams] = useSearchParams();
   const [nextUrl, setNextUrl] = useState(null);
   const [prevUrl, setPrevUrl] = useState(null);
@@ -32,18 +30,13 @@ export default function Home() {
 
   const itemsPerPage = 32; // Gutendex should provide 32 books per page
   const startIndex = (currentPage - 1) * itemsPerPage + 1;
-  const endIndex = Math.min(currentPage * itemsPerPage, books.length);
-  const displayTotal =
-    searchQuery || selectedCategory === "All" ? totalBooks : books.length;
+  const endIndex = startIndex + books.length - 1;
 
   useEffect(() => {
     const query = searchParams.get("search") || "";
-    setSearchQuery(query);
-    setCurrentPage(1); // Should reset when searching or picking a new categoryu
+    setCurrentPage(1);
     setLoading(true);
-    const categoryQuery = selectedCategory === "All" ? null : "topic";
-    const categoryParams =
-      selectedCategory === "All" ? null : selectedCategory.toLowerCase();
+    setSelectedCategory("All");
 
     if (query) {
       getSearchBooks(query)
@@ -51,17 +44,19 @@ export default function Home() {
           setBooks(data.results);
           setTotalBooks(data.count);
           setNextUrl(data.next);
-          setPrevUrl(data.prev);
+          setPrevUrl(data.previous);
         })
         .catch((err) => console.error("Search Failed:", err))
         .finally(() => setLoading(false));
     } else {
-      getBooks(categoryQuery, categoryParams)
+      getBooks(
+        selectedCategory === "All" ? null : selectedCategory.toLowerCase()
+      )
         .then((data) => {
           setBooks(data.results);
           setTotalBooks(data.count);
           setNextUrl(data.next);
-          setPrevUrl(data.prev);
+          setPrevUrl(data.previous);
         })
         .catch((err) => console.error("Fetch Failed:", err))
         .finally(() => setLoading(false));
@@ -76,7 +71,7 @@ export default function Home() {
         .then((data) => {
           setBooks(data.results);
           setNextUrl(data.next);
-          setPrevUrl(data.prev);
+          setPrevUrl(data.previous);
         })
         .catch((err) => console.error("Next page failed to load:", err))
         .finally(() => setLoading(false));
@@ -85,31 +80,18 @@ export default function Home() {
 
   const handlePrev = () => {
     if (prevUrl) {
-      setCurrentPage((prev) => prev + 1);
+      setCurrentPage((prev) => prev - 1);
       setLoading(true);
-      getNextBooks(prevUrl)
+      getPrevBooks(prevUrl)
         .then((data) => {
           setBooks(data.results);
           setNextUrl(data.next);
-          setPrevUrl(data.prev);
+          setPrevUrl(data.previous);
         })
         .catch((err) => console.error("Previous page failed to load:", err))
         .finally(() => setLoading(false));
     }
   };
-
-  // useEffect(() => {
-  //   if (selectedCategory === "All") {
-  //     setBooks(results);
-  //   } else {
-  //     const filtered = results.filter((book) =>
-  //       book.subjects?.some((topic) =>
-  //         topic.toLowerCase().includes(selectedCategory.toLowerCase())
-  //       )
-  //     );
-  //     setBooks(filtered);
-  //   }
-  // }, [selectedCategory, results]);
 
   return (
     <>
@@ -150,7 +132,7 @@ export default function Home() {
               </h2>
             ) : (
               <p className="text-lg text-center mt-5">
-                Showing {startIndex} to {endIndex} out of {displayTotal} books
+                Showing {startIndex} to {endIndex} out of {totalBooks} books
               </p>
             )}
             <Details
