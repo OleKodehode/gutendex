@@ -1,13 +1,13 @@
-export default function Cards({ book }) {
-  const { title, authors, formats } = book;
+export default function Cards({ book, openDetails }) {
+  const { title, authors, formats, id } = book;
 
   return (
     <>
-      <div className="book-card">
+      <div className="book-card" onClick={() => openDetails(id)}>
         <img src={formats["image/jpeg"]} alt="" />
         <h3 className="text-lg">{title}</h3>
         <p className="italic">by {authors[0]?.name}</p>
-        <div className="border-2 border-zinc-200 w-full text-center rounded-2xl mt-2 py-2">
+        <div className="favorite">
           <button className="text-3xl">♡</button>
         </div>
       </div>

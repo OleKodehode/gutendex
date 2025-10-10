@@ -18,8 +18,12 @@
   @apply rounded-lg h-60 w-auto shadow-md shadow-zinc-800;
 }
 
-.book-card > div {
-  @apply hover:text-red-500 hover:border-red-500 hover:-translate-y-0.5;
+.favorite {
+  @apply border-2 border-zinc-200 w-full text-center rounded-2xl mt-2 py-2 hover:text-red-500 hover:border-red-500 hover:-translate-y-0.5;
+}
+
+dialog > div > .favorite {
+  @apply md:w-1/2;
 }
 
 .books-container {
@@ -28,4 +32,24 @@
 
 .nav-btn {
   @apply rounded-lg bg-zinc-700 p-2 hover:bg-zinc-800 hover:-translate-y-0.5 w-50;
+}
+
+dialog {
+  @apply fixed inset-0 z-50 flex justify-center items-center bg-zinc-900/50 backdrop-blur-xs w-full h-full;
+}
+
+.details-container {
+  @apply dark:bg-zinc-800 p-6 pt-2 rounded-lg w-11/12 md:w-6/12 min-h-10/12 md:min-h-8/12 flex flex-col justify-between items-center relative dark:text-zinc-200;
+}
+
+dialog > div > img {
+  @apply rounded-xl w-auto h-auto max-h-1/2;
+}
+
+a {
+  @apply text-sky-500 dark:text-sky-400 hover:underline hover:cursor-pointer hover:text-sky-600 hover:dark:text-sky-500;
+}
+
+.clamp-title {
+  font-size: clamp(1rem, 3svw, 1.25rem);
 }

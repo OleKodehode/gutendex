@@ -31,7 +31,7 @@
         "Category: Novels",
         "Children's Literature"
       ],
-      "languages": ["en"],
+      "languages": ["en", "fr"],
       "copyright": false,
       "media_type": "Text",
       "formats": {

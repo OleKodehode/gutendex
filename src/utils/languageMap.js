@@ -1,0 +1,28 @@
+const languageMap = {
+  en: "English",
+  fr: "French",
+  de: "German",
+  fi: "Finnish",
+  nl: "Dutch",
+  it: "Italian",
+  es: "Spanish",
+  sv: "Swedish",
+  pt: "Portuguese",
+  no: "Norwegian",
+  da: "Danish",
+  la: "Latin",
+  ru: "Russian",
+  pl: "Polish",
+  el: "Greek",
+  hu: "Hungarian",
+  cs: "Czech",
+  eo: "Esperanto",
+  ja: "Japanese",
+  he: "Hebrew",
+  zh: "Chinese",
+  ar: "Arabic",
+  sa: "Sanskrit",
+  ga: "Irish",
+};
+
+export const convertLanguageCode = (code) => languageMap[code] || code;
