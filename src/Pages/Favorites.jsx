@@ -24,6 +24,7 @@ export default function Favorites() {
       .then((data) => setBooks(data.results))
       .catch((err) => console.error("Failed to fetch favorites:", err))
       .finally(() => setLoading(false));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []); // fetch only once - Allow the user to re-add a favorite to their list if they miss-clicked or change their mind before leaving favorites
 
   if (loading) {
